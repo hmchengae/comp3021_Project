@@ -16,7 +16,7 @@ public class TestObject
 		FriendsPost fpost = new FriendsPost(date, content, user);
 		
 		System.out.println(fpost);
-		
+		//ff
 		System.out.println(fpost.contains("first"));
 		System.out.println(fpost.contains("HKUST"));
 	}
