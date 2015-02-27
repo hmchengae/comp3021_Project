@@ -1,4 +1,4 @@
-package base;
+package unit;
 
 import java.util.Date;
 
@@ -38,7 +38,9 @@ public class Post {
 	@Override
 	public String toString()
 	{
-		return content;
+		String temp = "";
+		temp = date.toString() + "\n" + content;
+		return temp;
 	}
 	
 	@Override
@@ -48,13 +50,18 @@ public class Post {
 		{
 			return false;
 		}
-		else if (o instanceof Post)
+		else
 		{
-			Post temp = (Post) o;
-			if (temp.getContent().equals(content) == true)
+			
+			if(o.getClass().getName().equals(this.getClass().getName()) == true)
 			{
-				return true;
+				Post temp = (Post) o;
+				if (temp.getContent().equals(content) == true && temp.getDate().equals(date))
+				{
+					return true;
+				}
 			}
+			
 		}
 		
 		//reach here = not same class

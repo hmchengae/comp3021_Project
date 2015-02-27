@@ -1,4 +1,4 @@
-package base;
+package unit;
 
 public class User
 {
@@ -56,7 +56,46 @@ public class User
 				", userEmail=" + userEmail + "]";
 
 		return temp;
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o == null)
+		{
+			return false;
+		}
+		else
+		{
+			
+			if(o.getClass().getName().equals(this.getClass().getName()) == true)
+			{
+				User temp = (User) o;
+				
+				if(temp.getUserID() == userID && temp.getUserEmail().equals(userEmail)
+					&& temp.getUserName().equals(userName))
+				{
+					return true;
+				}
+			}
+			
+		}
 		
+		//reach here = not same class
+		return false;
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		int hashCode = 0;
+		
+		hashCode = hashCode + userName.hashCode();
+		hashCode = hashCode + userEmail.hashCode();
+		hashCode = hashCode + userID;
+		
+		return hashCode;
+	
 	}
 	
 }

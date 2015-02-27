@@ -1,4 +1,4 @@
-package base;
+package unit;
 
 import java.util.Date;
 
@@ -22,5 +22,7 @@ public class FriendsPost extends Post {
 		return temp;
 		
 	}
+	
+	//TODO for equals and hashcode
 	
 }
