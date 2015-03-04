@@ -22,13 +22,14 @@ public class TestBlog
 		while(!(prompt = testBlog.getInput()).equals("exit"))
 		{
 			
+			prompt = prompt.trim();
+			
 			if(prompt.equals("list"))
 			{
 				myBlog.list();
 			}
 			else if(prompt.startsWith("post"))
 			{
-				
 				if(prompt.length() <= "post".length())
 				{
 					continue;

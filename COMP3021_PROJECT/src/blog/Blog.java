@@ -78,44 +78,53 @@ public class Blog
 			postList.remove(index-1);
 		}
 	}
-	
+
 	@Override
-	public String toString()
-	{
-		return null;
+	public String toString() {
+		return "Blog [user=" + user + ", postList=" + postList + "]";
 	}
-	
+
 	@Override
-	public boolean equals(Object o)
-	{
-		if (o == null)
-		{
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((postList == null) ? 0 : postList.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
 			return false;
 		}
-		else
-		{
-			//the equal condition can be change
-			if(o.getClass().getName().equals(this.getClass().getName()) == true)
-			{
-				Blog temp = (Blog) o;
-				if (temp.getUser().equals(user) == true)
-				{
-					return true;
-				}
-			}
+		if (getClass() != obj.getClass()) {
+			return false;
 		}
-		
-		//reach here = not same class
-		return false;
+		Blog other = (Blog) obj;
+		if (postList == null) {
+			if (other.postList != null) {
+				return false;
+			}
+		} else if (!postList.equals(other.postList)) {
+			return false;
+		}
+		if (user == null) {
+			if (other.user != null) {
+				return false;
+			}
+		} else if (!user.equals(other.user)) {
+			return false;
+		}
+		return true;
 	}
 	
-	@Override
-	public int hashCode()
-	{
-		int hashCode = 0;
-		hashCode = hashCode + user.hashCode();
-		return hashCode;
 	
-	}
+	
+	
 	
 }

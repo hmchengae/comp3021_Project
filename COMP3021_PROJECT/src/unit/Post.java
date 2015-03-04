@@ -44,42 +44,45 @@ public class Post {
 	}
 	
 	@Override
-	public boolean equals(Object o)
-	{
-		if (o == null)
-		{
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
 			return false;
 		}
-		else
-		{
-			
-			if(o.getClass().getName().equals(this.getClass().getName()) == true)
-			{
-				Post temp = (Post) o;
-				if (temp.getContent().equals(content) == true && temp.getDate().equals(date))
-				{
-					return true;
-				}
-			}
-			
+		if (getClass() != obj.getClass()) {
+			return false;
 		}
-		
-		//reach here = not same class
-		return false;
+		Post other = (Post) obj;
+		if (content == null) {
+			if (other.content != null) {
+				return false;
+			}
+		} else if (!content.equals(other.content)) {
+			return false;
+		}
+		if (date == null) {
+			if (other.date != null) {
+				return false;
+			}
+		} else if (!date.equals(other.date)) {
+			return false;
+		}
+		return true;
 	}
-	
-	@Override
-	public int hashCode()
-	{
-		int hashCode = 0;
-		
-		hashCode = hashCode + content.hashCode();
-		hashCode = hashCode + date.hashCode();
-		
-		return hashCode;
-	
-	}
-	
+
+
 	public boolean contains(String keyword)
 	{
 		if (keyword == null)

@@ -22,7 +22,42 @@ public class FriendsPost extends Post {
 		return temp;
 		
 	}
+
+	@Override
+	public int hashCode() 
+	{
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((friend == null) ? 0 : friend.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		FriendsPost other = (FriendsPost) obj;
+		if (friend == null) 
+		{
+			if (other.friend != null) 
+			{
+				return false;
+			}
+		} else if (!friend.equals(other.friend)) 
+		{
+			return false;
+		}
+		return true;
+	}
 	
-	//TODO for equals and hashcode
+
+	
 	
 }
