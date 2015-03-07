@@ -1,12 +1,12 @@
 package unit;
 
-public class User
+public class User implements Comparable<User>
 {
 
 	private int userID;
 	private String userName;
 	private String userEmail;
-	
+
 	public User(int id, String name, String email)
 	{
 		userID = id;
@@ -18,14 +18,14 @@ public class User
 	{
 		return userID;
 	}
-	
-	
+
+
 	public String getUserName()
 	{
 		return userName;
 	}
-	
-	
+
+
 	public String getUserEmail()
 	{
 		return userEmail;
@@ -35,13 +35,13 @@ public class User
 	{
 		userID = id;
 	}
-	
+
 	public void setUserName(String name)
 	{
 		userName = name;	
 	}
-	
-	
+
+
 	public void setUserEmail(String email)
 	{
 		userEmail = email;
@@ -98,7 +98,23 @@ public class User
 		}
 		return true;
 	}
-	
-	
-	
+
+	@Override
+	public int compareTo(User o) 
+	{
+		if(this.getUserID() > o.getUserID())
+		{
+			return 1;
+		}
+		else if(this.getUserID() < o.getUserID())
+		{
+			return -1;
+		}
+
+		//mean equals
+		return 0;
+	}
+
+
+
 }

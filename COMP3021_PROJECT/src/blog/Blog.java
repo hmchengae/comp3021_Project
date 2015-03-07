@@ -1,6 +1,7 @@
 package blog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import unit.*;
 
@@ -8,28 +9,28 @@ public class Blog
 {
 	private User user;
 	private ArrayList<Post> postList;
-	
+
 	public Blog(User user)
 	{
 		this.user = user;
 		postList = new ArrayList<Post> ();
 	}
-	
+
 	public void setUser (User input)
 	{
 		user = input;
 	}
-	
+
 	public User getUser ()
 	{
 		return user;
 	}
-	
+
 	public void post(Post p)
 	{
 		if(p == null)
 			return;
-		
+
 		if (postList.contains(p) == true)
 		{
 			return;
@@ -41,7 +42,7 @@ public class Blog
 			System.out.println(p);
 		}
 	}
-	
+
 	public void list()
 	{
 		if(postList == null || postList.isEmpty() == true)
@@ -49,9 +50,9 @@ public class Blog
 			System.out.println("No post.");
 			return;
 		}
-		
+
 		System.out.println("Current Post(s):");
-		
+
 		int count = 1;
 		for(Post p: postList)
 		{
@@ -59,9 +60,9 @@ public class Blog
 			System.out.println(p);
 			++count;
 		}
-		
+
 	}
-	
+
 	public void delete (int index)
 	{
 		if(postList == null || postList.isEmpty() == true)
@@ -122,9 +123,44 @@ public class Blog
 		}
 		return true;
 	}
-	
-	
-	
-	
-	
+
+	public void setPosts(ArrayList<Post> allposts) 
+	{
+		if(allposts != null)
+		{
+			postList = allposts;
+		}
+	}
+
+	public void search(int i, String string) 
+	{
+
+		if(postList == null || postList.size() == 0)
+		{
+			return;
+		}
+
+
+		Calendar cal = Calendar.getInstance();
+
+		for(Post p: postList)
+		{
+
+			cal.setTime(p.getDate());
+
+			int month = cal.get(Calendar.MONTH);
+			
+			if(month == (i-1))
+			{
+				if(p.getContent().contains(string) == true)
+				{
+					System.out.println(p);
+				}
+			}
+
+		}
+
+	}
+
+
 }
