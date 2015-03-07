@@ -13,7 +13,6 @@ public class TestBlog
 
 	public static void main(String [] args)
 	{
-		
 		TestBlog testBlog = new TestBlog();
 		User user = new User(1, "Comp3021", "Comp3021@ust.hk");
 		Blog myBlog = new Blog(user);			
