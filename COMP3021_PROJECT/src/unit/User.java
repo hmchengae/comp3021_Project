@@ -1,8 +1,12 @@
 package unit;
 
-public class User implements Comparable<User>
+import java.io.Serializable;
+
+public class User implements Comparable<User>, Serializable
 {
 
+	private static final long serialVersionUID = -7580912474015150924L;
+	
 	private int userID;
 	private String userName;
 	private String userEmail;

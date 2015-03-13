@@ -1,10 +1,13 @@
 package unit;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Post implements Comparable<Post>
+public class Post implements Comparable<Post> , Serializable
 {
 
+	private static final long serialVersionUID = 1274212107187707777L;
+	
 	private Date date;
 	private String content;
 

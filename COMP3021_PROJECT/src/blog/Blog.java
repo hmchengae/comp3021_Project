@@ -1,12 +1,22 @@
 package blog;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import unit.*;
 
-public class Blog 
+public class Blog implements Serializable
 {
+	
+	private static final long serialVersionUID = -716916758200703890L;
+	
 	private User user;
 	private ArrayList<Post> postList;
 
@@ -160,6 +170,53 @@ public class Blog
 
 		}
 
+	}
+	
+	public void save(String filepath)
+	{
+		try
+		{
+			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath)));
+			oos.writeObject(user);
+			oos.writeObject(postList);
+			oos.flush();
+			oos.close();
+		}
+		catch (Exception e)
+		{
+			return;
+		}
+
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void load(String filepath)
+	{
+		
+		try
+		{
+
+			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)));
+			//reach here = exists file
+			try
+			{	
+				user = (User) ois.readObject();
+				postList = (ArrayList<Post>) ois.readObject();
+			}
+			catch (Exception e)
+			{	
+				System.out.println("Casting error!");
+			}
+
+			ois.close();
+
+		}
+		catch (Exception e)
+		{
+			System.out.println("Wait! There is something wrong. I cannot find the file!");
+			return;
+		}
+		
 	}
 
 
