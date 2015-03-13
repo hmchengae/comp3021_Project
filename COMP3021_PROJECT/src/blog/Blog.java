@@ -3,6 +3,7 @@ package blog;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -211,9 +212,14 @@ public class Blog implements Serializable
 			ois.close();
 
 		}
-		catch (Exception e)
+		catch (FileNotFoundException e)
 		{
 			System.out.println("Wait! There is something wrong. I cannot find the file!");
+			return;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Something Wrong with the file!");
 			return;
 		}
 		
