@@ -142,6 +142,12 @@ public class Blog implements Serializable
 			postList = allposts;
 		}
 	}
+	
+	public ArrayList<Post> getPostsList() 
+	{
+		return postList;
+		
+	}
 
 	public void search(int i, String string) 
 	{
