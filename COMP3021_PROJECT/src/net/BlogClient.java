@@ -1,7 +1,10 @@
 package net;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class BlogClient 
 {
@@ -16,20 +19,34 @@ public class BlogClient
 		{
 			Socket cSocket = new Socket(IP, PORT);
 			PrintWriter out = new PrintWriter(cSocket.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(cSocket.getInputStream()));
 			
-			/*
 			Scanner sc = new Scanner(System.in);
-			while(sc.hasNextLine()) System.out.println(sc.nextLine());
-			*/
+			while(sc.hasNextLine())
+			{
+				//send to server
+				String input = sc.nextLine();
+				out.println(input);
+				out.flush();
+				
+				if(input.equals("quit"))
+				{
+					break;
+				}
+				
+				//should sleep to gain buffer
+				Thread.sleep(300);
+	
+				//Receive server feedback
+				String responese = in.readLine();
+				System.out.println(responese);
+				
+				
+			}
 			
-			String message = new String("I am sending message to the server!!");
-			
-			//System.out.println("You are sending \"" + message + "\" to server");
-			out.println(message);
-			//System.out.println("Finish sent");
-			
+		
 			//not close so fast
-			
+			sc.close();
 			cSocket.close();
 			System.exit(0);
 			
